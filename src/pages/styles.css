@@ -1,0 +1,43 @@
+.wrapper{
+    margin: auto;
+    margin-top: 100px;
+    padding: 50px;
+    width: 500px;
+    border: 2px rgb(122, 43, 226) solid;
+    border-radius: 12px;
+    background-color: rgb(236, 236, 236);
+    box-shadow: 10px 12px 5px lightgray;
+}
+
+label{
+    color: black;
+}
+
+.row{
+    padding: 10px;
+}
+
+.btn{
+    background-color: rgb(122, 43, 226);
+}
+
+.form-control{
+    border: red 2px solid;
+}
+
+.card{
+    background-color: white;
+}
+
+.card:hover{
+    background-color: rgb(236, 236, 236);
+    cursor: pointer;
+}
+
+.board-container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding: 20px;
+    gap: 30px;
+}

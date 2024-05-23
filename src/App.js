@@ -1,25 +1,37 @@
 import logo from './logo.svg';
 import './App.css';
+import HeaderComponent from './components/HeaderComponent';
+import { Router, Routes, BrowserRouter, Route, Link, redirect } from 'react-router-dom';
+import Home from './components/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Landing from './pages/landing';
+import Board from './pages/Board';
+import Profile from './pages/Profile';
+import React from 'react';
 
+console.log("hiiii");
+export const UserContext = React.createContext(null);
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    
+    //  <HeaderComponent />
+    <div className='App'>
+      <HeaderComponent></HeaderComponent>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/head" element={<HeaderComponent />} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/board" element={<Board />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+      {/**/ }
     </div>
-  );
+  
+);
+  
 }
 
 export default App;
