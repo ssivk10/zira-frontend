@@ -70,7 +70,6 @@ function Login() {
 
     return (
         <div className="wrapper">
-
             <div className="container-fluid">
                 <form action="">
                     <div className="row">

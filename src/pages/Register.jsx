@@ -11,6 +11,19 @@ function Register() {
     const [firstName, setFirstName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    var [emailErr, setEmailErr] = useState(false);
+    var [pwdError, setPwdError] = useState(false);
+    const validEmail = new RegExp('^[a-z][a-z0-9\S]{4,}[@][a-z]{2,}.[a-z]{2,}$');
+    const validPassword = new RegExp('^(?=.*?[A-Z])(?=.*\S+)(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
+    const validate = () => {
+        if (!validEmail.test(email)) {
+            setEmailErr = true;
+        }
+        if (!validPassword.test(password)) {
+            setPwdError = true;
+        }
+
+    }
     const navigate = useNavigate();
     let body = {
         firstName: firstName,
@@ -18,31 +31,38 @@ function Register() {
         password: password,
     }
 
-    useEffect(() => { 
-        if(localStorage.getItem('token'))
+    useEffect(() => {
+        if (localStorage.getItem('token'))
             navigate("/home");
-      }, []);
+    }, []);
 
     async function register(event) {
 
         event.preventDefault();
         try {
-            if(body.email!=="" && body.password!==""){
-            await axios.post(API_BASE_URL + "/api/v1/auth/register", body).then((res) => {
-                console.log(res);
-                console.log(body);
-                localStorage.setItem('token', res.data.token);
-                navigate("/home");
-            }, fail => {
-                console.error(fail);
-                toast.error("Invalid credentials.", {
+            validate();
+            if (body.email !== "" && body.password !== "" && (!emailErr && !pwdError)) {
+                await axios.post(API_BASE_URL + "/api/v1/auth/register", body).then((res) => {
+                    console.log(res);
+                    console.log(body);
+                    localStorage.setItem('token', res.data.token);
+                    navigate("/home");
+                }, fail => {
+                    console.error(fail);
+                    toast.error("Invalid credentials.", {
+                        theme: "dark"
+                    });
+                });
+            }
+            else if (emailErr || pwdError) {
+                toast.error("Invalid username or password.", {
                     theme: "dark"
-                  });
-            });}
-            else{
+                });
+            }
+            else {
                 toast.error("Enter some data.", {
                     theme: "dark"
-                  });
+                });
             }
         } catch (err) {
             console.error(err);
@@ -79,7 +99,7 @@ function Register() {
                         </div>
                         <div className="col">
                             <input type="password" name="password" id="password" className="form-control" placeholder="Password"
-                                value={password} onChange={(event) => { setPassword(event.target.value); }} required/>
+                                value={password} onChange={(event) => { setPassword(event.target.value); }} required />
                         </div>
                     </div>
                     <button type="submit" className="btn btn-dark" onClick={register}>Submit</button>

@@ -3,7 +3,7 @@
     margin-top: 100px;
     padding: 50px;
     width: 500px;
-    border: 2px rgb(122, 43, 226) solid;
+    border: 2px rgb(18, 129, 176) solid;
     border-radius: 12px;
     background-color: rgb(236, 236, 236);
     box-shadow: 10px 12px 5px lightgray;
@@ -18,7 +18,7 @@ label{
 }
 
 .btn{
-    background-color: rgb(122, 43, 226);
+    background-color: rgb(18, 129, 176);
 }
 
 .form-control{

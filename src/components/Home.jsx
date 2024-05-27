@@ -20,6 +20,7 @@ function Home() {
                         <th>ID</th>
                         <th>Name</th>
                         <th>Lead</th>
+                        <th>Date</th>
                         <th>More actions</th>
                     </tr>
                 </thead>
@@ -29,6 +30,7 @@ function Home() {
                         <td><p>{project}</p></td>
                         <td><p>{lead}</p></td>
                         <td><p>date</p></td>
+                        <td><button className="btn btn-light">More</button></td>
                     </tr>
                 </tbody>
             </table>
